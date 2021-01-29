@@ -9,7 +9,6 @@ from urllib.request import urlretrieve
 from datetime import datetime
 from random import seed
 from random import randint
-import xlwings as xw
 from .models import *
 import time
 import os
