@@ -9,10 +9,6 @@ from urllib.request import urlretrieve
 from datetime import datetime
 from random import seed
 from random import randint
-<<<<<<< HEAD
-
-=======
->>>>>>> 0cdc747bbf4e7513f92a396a3f65c1dde82f546a
 from .models import *
 import time
 import os
