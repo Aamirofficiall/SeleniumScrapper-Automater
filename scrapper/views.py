@@ -18,7 +18,7 @@ import pandas
 seed(1)
 
 from django.shortcuts import render
-
+isOccupied = False
 
 
 def index(request):
@@ -54,7 +54,7 @@ def index(request):
     chromeOptions.add_argument('--no-sandbox')
 
 
-    driver = webdriver.Chrome(os.path.abspath('chromedriver.exe'),chrome_options=chromeOptions)
+    driver = webdriver.Chrome(os.path.abspath('chromedriver.exe'),options=options)
 
 
 
@@ -309,6 +309,8 @@ def index(request):
         sleep(3)
 
         if  driver.find_element_by_xpath('//*[@id="checkUsername_result"]').get_attribute('innerHTML') == 'Benutzername ist frei':
+            global isOccupied
+            isOccupied=True
             return name
         else :
             raise Exception
@@ -390,6 +392,8 @@ def index(request):
 
         try:
             checkUsername(profileUsername)
+            driver.find_element_by_xpath('//*[@id="username"]').clear()
+
         except:
             print('username occupied')
             return
@@ -429,7 +433,7 @@ def index(request):
                 profileDesc = lst['profileDesc'] ,
                 currentURLNUMBER=START_INDEX_FOR_URL
                 )
-                
+            global isOccupied 
             Profiles.objects.create(
                 profileNo=START_INDEX_FOR_URL,
                 eyeColor = lst['eyeColor'] ,
@@ -437,6 +441,7 @@ def index(request):
                 profileAge = lst['profileAge'] ,
                 profileUsername = lst['profileUsername'],
                 profileDesc = lst['profileDesc'] ,
+                isOccupied = isOccupied
                 )
             print(START_INDEX_FOR_URL)
 

@@ -8,7 +8,7 @@ class Profiles(models.Model):
     profileAge = models.CharField(max_length=20)
     profileUsername = models.CharField(max_length=20)
     profileDesc = models.TextField()
-
+    isOccupied = models.BooleanField(default=False)
     def __str__(self):
         return str(self.profileNo)+'- '+self.profileUsername
     
