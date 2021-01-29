@@ -9,7 +9,7 @@ from urllib.request import urlretrieve
 from datetime import datetime
 from random import seed
 from random import randint
-import xlwings as xw
+
 from .models import *
 import time
 import os
@@ -52,7 +52,7 @@ def index(request):
 
 
 
-    driver = webdriver.Chrome(os.path.realpath('chromedriver.exe'))
+    driver = webdriver.Chrome(os.path.abspath('chromedriver.exe'))
 
 
 
