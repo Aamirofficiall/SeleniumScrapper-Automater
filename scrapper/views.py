@@ -10,7 +10,7 @@ from datetime import datetime
 from random import seed
 from random import randint
 import xlwings as xw
-
+from .models import *
 import time
 import os
 import re 
@@ -52,7 +52,7 @@ def index(request):
 
 
 
-    driver = webdriver.Chrome(os.path.realpath('chromedriver.exe'),options=options)
+    driver = webdriver.Chrome(os.path.realpath('chromedriver.exe'))
 
 
 
@@ -427,7 +427,15 @@ def index(request):
                 profileDesc = lst['profileDesc'] ,
                 currentURLNUMBER=START_INDEX_FOR_URL
                 )
-
+                
+            Profiles.objects.create(
+                profileNo=START_INDEX_FOR_URL,
+                eyeColor = lst['eyeColor'] ,
+                haircolor = lst['hairColor'] ,
+                profileAge = lst['profileAge'] ,
+                profileUsername = lst['profileUsername'],
+                profileDesc = lst['profileDesc'] ,
+                )
             print(START_INDEX_FOR_URL)
 
             excel_data_df['Start_url_index'].iloc[0] = START_INDEX_FOR_URL
